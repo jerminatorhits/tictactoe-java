@@ -25,7 +25,7 @@ public class Session {
                 int move = fetchInput(p);
                 b.update(move, p.getToken());
             } else {
-                int move = fetchInput(c);
+                int move = Minimax.getMinimax(b, true);
 //                int move = fetchInput(c);
                 b.update(move, c.getToken());
             }
