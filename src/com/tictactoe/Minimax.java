@@ -19,7 +19,6 @@ public class Minimax {
                 score = Math.max(score, tempScore);
                 move = i;
             }
-            System.out.println(i + " " + tempScore + " " + move);
             spaces[i - 1] = String.valueOf(i);
         }
         return move;

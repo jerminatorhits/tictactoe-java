@@ -176,6 +176,19 @@ public class RulesTest {
     }
 
     @Test
+    public void gameHasNoWinnerYet2() {
+        Board b = new Board();
+        String[] spaces = b.getSpaces();
+
+        spaces[0] = "X"; spaces[1] = "X"; spaces[2] = "O";
+        spaces[3] = "O"; spaces[4] = "O"; spaces[5] = "X";
+        spaces[6] = "X"; spaces[7] = "8"; spaces[8] = "O";
+
+        String winner = Rules.winner(b);
+        assertEquals("#", winner);
+    }
+
+    @Test
     public void gameIsTie() {
         Board b = new Board();
         String[] spaces = b.getSpaces();

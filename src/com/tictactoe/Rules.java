@@ -46,7 +46,7 @@ public class Rules {
         int rowLength = (int) Math.sqrt(spaces.length);
         int topRightIndex = rowLength - 1;
         int count = 0;
-        for (int index = 0; index < spaces.length - 1; index += rowLength - 1) {
+        for (int index = 0; index < spaces.length - rowLength; index += rowLength - 1) {
             if (spaces[topRightIndex].equals(spaces[topRightIndex + index])) count++;
         }
         if (count == rowLength) return spaces[topRightIndex];
