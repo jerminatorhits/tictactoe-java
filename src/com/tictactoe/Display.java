@@ -1,9 +1,22 @@
 package com.tictactoe;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Display {
 
-    public static void welcome() {
-        System.out.print("Hello! Welcome to TicTacToe! You will be \'X\' and the Computer will be \'O\'. The First player to get 3 in a row wins!\n");
+    private static final Map<String, String> messages = createMap();
+
+    private static Map<String, String> createMap() {
+        Map<String,String> map = new HashMap<>();
+        map.put("welcome", "Hello! Welcome to TicTacToe! You will be \'X\' and the Computer will be \'O\'. The First player to get 3 in a row wins!\n");
+        map.put("playerWin", "You Win!");
+        map.put("computerWin", "The Computer has won!");
+        map.put("tie", "It's a tie!");
+        map.put("gameOver", "\nThanks for playing!");
+        map.put("requestMove", "Please enter a valid move from 1 to 9: ");
+        map.put("invalidMove", "\nInvalid Input. Enter a valid move: ");
+        return map;
     }
 
     public static void print(Board b) {
@@ -28,7 +41,8 @@ public class Display {
     }
 
     public static void print(String s) {
-        System.out.print(s);
+        String message = messages.get(s);
+        System.out.println(message);
     }
 
 }

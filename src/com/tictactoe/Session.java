@@ -18,7 +18,7 @@ public class Session {
 
     public void start() {
         String[] spaces = b.getSpaces();
-        Display.welcome();
+        Display.print("welcome");
         Display.print(b);
         while (!Rules.gameOver(b)) {
             if (currentTurn.equals(p)) {
@@ -32,41 +32,37 @@ public class Session {
             Display.print(b);
             switchTurns();
         }
+        endGame(b);
+    }
+
+    private void endGame(Board b) {
         switch (Rules.winner(b)) {
             case "X":
-                System.out.println("You Win!");
+                Display.print("playerWin");
                 break;
             case "O":
-                System.out.println("The Computer has won!");
+                Display.print("computerWin");
                 break;
             default:
-                System.out.println("It's a tie!");
+                Display.print("tie");
                 break;
         }
-        System.out.println("\nThanks for playing!");
+        Display.print("gameOver");
     }
 
     public int fetchInput(Player p) {
         Scanner sc = new Scanner(System.in);
         int number;
         do {
-            System.out.print("Please enter a valid move from 1 to 9: ");
+            Display.print("requestMove");
             while (!sc.hasNextInt()) {
-                System.out.print("\nInvalid Input. Enter a valid move: ");
+                Display.print("invalidMove");
                 sc.next();
             }
             number = sc.nextInt();
             System.out.println();
         } while (!validMove(number, b));
         return number;
-    }
-
-    private int fetchInput(Computer c) {
-        return c.randomMove(b);
-    }
-
-    private boolean validateInput(Scanner sc) {
-        return !sc.hasNextInt();
     }
 
     private boolean validMove(int n, Board b) {
@@ -84,20 +80,12 @@ public class Session {
         return !spaces[m].equals("X") && !spaces[m].equals("O");
     }
 
-    public void setCurrentTurn(Player p) {
-        currentTurn = p;
-    }
-
     public Player getCurrentTurn() {
         return currentTurn;
     }
 
     public void switchTurns() {
         currentTurn = currentTurn.getToken().equals(p.getToken()) ? c : p;
-    }
-
-    public Player getPlayer() {
-        return p;
     }
 
     public Computer getComputer() {
