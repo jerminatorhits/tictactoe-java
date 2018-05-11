@@ -17,7 +17,6 @@ public class Session {
     }
 
     public void start() {
-        String[] spaces = b.getSpaces();
         Display.print("welcome");
         Display.print(b);
         while (!Rules.gameOver(b)) {
@@ -25,8 +24,7 @@ public class Session {
                 int move = fetchInput(p);
                 b.update(move, p.getToken());
             } else {
-                int move = Minimax.getMinimax(b, true);
-//                int move = fetchInput(c);
+                int move = fetchInput(c);
                 b.update(move, c.getToken());
             }
             Display.print(b);
@@ -51,18 +49,24 @@ public class Session {
     }
 
     public int fetchInput(Player p) {
-        Scanner sc = new Scanner(System.in);
-        int number;
-        do {
-            Display.print("requestMove");
-            while (!sc.hasNextInt()) {
-                Display.print("invalidMove");
-                sc.next();
-            }
-            number = sc.nextInt();
-            System.out.println();
-        } while (!validMove(number, b));
-        return number;
+        if (p instanceof Computer) {
+            Display.print("computerTurn");
+            delay(1);
+            return Minimax.getMinimax(b, true);
+        }
+        else {
+            Scanner sc = new Scanner(System.in);
+            int number;
+            do {
+                Display.print("requestMove");
+                while (!sc.hasNextInt()) {
+                    Display.print("invalidMove");
+                    sc.next();
+                }
+                number = sc.nextInt();
+            } while (!validMove(number, b));
+            return number;
+        }
     }
 
     private boolean validMove(int n, Board b) {
@@ -90,5 +94,16 @@ public class Session {
 
     public Computer getComputer() {
         return c;
+    }
+
+    private void delay(int seconds) {
+        try
+        {
+            Thread.sleep(seconds * 1000);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
     }
 }

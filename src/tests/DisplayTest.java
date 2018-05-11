@@ -40,8 +40,8 @@ public class DisplayTest {
     @Test
     public void printString() {
         Display d = new Display();
-        Board b = new Board();
-        Display.print("test");
-        assertEquals("test", outContent.toString());
+        d.messages.put("test1", "test2");
+        Display.print("test1");
+        assertEquals("test2", outContent.toString());
     }
 }

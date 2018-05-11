@@ -5,11 +5,12 @@ import java.util.Map;
 
 public class Display {
 
-    private static final Map<String, String> messages = createMap();
+    public static final Map<String, String> messages = createMap();
 
     private static Map<String, String> createMap() {
         Map<String,String> map = new HashMap<>();
         map.put("welcome", "Hello! Welcome to TicTacToe! You will be \'X\' and the Computer will be \'O\'. The First player to get 3 in a row wins!\n");
+        map.put("computerTurn", "The Computer is thinking...\n");
         map.put("playerWin", "You Win!");
         map.put("computerWin", "The Computer has won!");
         map.put("tie", "It's a tie!");
@@ -42,7 +43,7 @@ public class Display {
 
     public static void print(String s) {
         String message = messages.get(s);
-        System.out.println(message);
+        System.out.print(message);
     }
 
 }
